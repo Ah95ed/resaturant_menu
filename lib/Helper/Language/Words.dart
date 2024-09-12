@@ -13,7 +13,7 @@ class Words {
   static const String delete = 'Delete';
   static const String login = 'Login';
   static const totalPrice = 'totalprice';
-  static const foods = 'foods';
+  static const foods = 'Foods';
   static const drinks = 'drinks';
 
   static Map<String, Map<String, String>> keyMap = {

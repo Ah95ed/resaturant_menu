@@ -1,13 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_management/Controller/CartController.dart';
 import 'package:restaurant_management/Controller/DataApiController/DataApiController.dart';
-import 'package:restaurant_management/Helper/EngineInitialization/EngineInitialization.dart';
 import 'package:restaurant_management/Helper/Language/LanguageContrller.dart';
-import 'package:restaurant_management/Helper/Language/Words.dart';
 import 'package:restaurant_management/Helper/Logger/Logger.dart';
 import 'package:restaurant_management/Helper/Service/onRunInit.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/MenuScreen.dart';
@@ -23,14 +19,9 @@ void main() async {
           providers: [
             ChangeNotifierProvider(
               create: (_) => LanguageController(),
-              lazy: false,
-            ),
-            ChangeNotifierProvider(
-              create: (_) => CartController(),
               lazy: true,
             ),
-            ChangeNotifierProvider.value(value: DataApiController.instance),
-            
+            ChangeNotifierProvider.value(value: DataApiController()),
           ],
           child: const MyApp(),
         ),
@@ -44,15 +35,11 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Consumer<LanguageController>(
       builder: (context, value, child) {
         return MaterialApp(
-          navigatorKey: navigatorKey,
           supportedLocales: value.supportLanguage,
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
@@ -61,9 +48,9 @@ class MyApp extends StatelessWidget {
           ],
           debugShowCheckedModeBanner: false,
           locale: value.currentLocale,
-          initialRoute: initRoute,
-          routes: routes,
-          home: MyHomePage(),
+          // initialRoute: initRoute,
+          // routes: routes,
+          home: MenuScreen(),
         );
       },
     );

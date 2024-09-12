@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_management/Controller/CartController.dart';
 import 'package:restaurant_management/Controller/DataApiController/DataApiController.dart';
+import 'package:restaurant_management/Helper/Language/LanguageContrller.dart';
 import 'package:restaurant_management/Helper/Language/Words.dart';
-import 'package:restaurant_management/Models/Api/Api.dart';
-import 'package:restaurant_management/View/Screens/Drawer/CustomDrawer.dart';
+import 'package:restaurant_management/Models/ApiModel/ApiModel.dart';
+import 'package:restaurant_management/View/Drawer/CustomDrawer.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/Drinks/DrinksScreen.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/Food/FoodScreen.dart';
 import 'package:restaurant_management/View/StyleApp/SizeApp/SizeApp.dart';
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
+class MenuScreen extends StatelessWidget {
+  MenuScreen({super.key});
 
   final Scaffoldkey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    final e = context.watch<CartController>();
-
-
+    final c = context.read<DataApiController>();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -42,29 +40,54 @@ class MyHomePage extends StatelessWidget {
           ),
           height: 40,
           width: context.width / 2,
-          child: Center(
-            child: Text(
-              '${Words.totalPrice} ${e.getAllPriceCart().toString()}',
-              style: const TextStyle(color: Colors.black),
-            ),
+          child: Consumer<DataApiController>(
+            builder: (context, e, child) {
+              return Center(
+                child: Text(
+                  '${Words.totalPrice} ${e.getAllPriceCart()}',
+                  style: const TextStyle(color: Colors.black),
+                ),
+              );
+            },
           ),
         ),
         appBar: AppBar(
           elevation: 4,
           centerTitle: true,
-          leading: InkWell(
-            onTap: () {
-              Scaffoldkey.currentState!.openDrawer();
-            
-            },
-            child: const Icon(
-              Icons.account_box,
+          leading: Consumer<DataApiController>(
+            builder: (context, value, child) => Stack(
+              children: [
+                Positioned(
+                    child: IconButton(
+                  onPressed: () => Scaffoldkey.currentState!.openDrawer(),
+                  icon: Image.asset(
+                    'assets/icon/shop.png',
+                    width: context.setIconSize(9),
+                    color: c.carts.isEmpty ? Colors.black : Colors.red,
+                  ),
+                )),
+                Positioned(
+                  right: context.setWidth(5),
+                  top: context.setHeight(-0.3),
+                  child: Text(
+                    '${value.carts.length}',
+                    style: TextStyle(
+                        fontSize: context.setFontSize(8), color: Colors.black),
+                  ),
+                ),
+              ],
             ),
           ),
-          title: const TabBar(
+          title: TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.food_bank), text: Words.foods),
-              Tab(icon: Icon(Icons.local_drink), text: Words.drinks),
+              Tab(
+                icon: const Icon(Icons.fastfood),
+                text: Lang[Words.foods],
+              ),
+              Tab(
+                icon: const Icon(Icons.local_drink),
+                text: Lang[Words.drinks],
+              ),
             ],
           ),
           flexibleSpace: Container(

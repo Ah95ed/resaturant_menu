@@ -15,6 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   http: 
+  # dio:
 
   provider: ^6.0.5
   shared_preferences: ^2.3.2
@@ -29,6 +30,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/food/
+    - assets/icon/
     - shorebird.yaml
     
   uses-material-design: true
