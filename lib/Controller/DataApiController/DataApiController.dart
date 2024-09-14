@@ -13,11 +13,19 @@ class DataApiController extends ChangeNotifier {
     getData();
   }
   Map<String, dynamic> data = {};
-  List dataList = [];
+  List foods = [];
+  List drinks = [];
 
   Future<void> getData() async {
     data = await _apiModel.getData();
-    dataList = data['data'];
+ 
+    for(var e in data['data']){
+      if(e['sngl'] == 'drink'){
+        drinks.add(e);
+      }else{
+        foods.add(e);
+      }
+    }
 
     notifyListeners();
   }

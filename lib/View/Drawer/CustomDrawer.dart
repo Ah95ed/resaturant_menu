@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_management/Controller/DataApiController/DataApiController.dart';
+import 'package:restaurant_management/View/StyleApp/SizeApp/SizeApp.dart';
 
 
 
@@ -14,7 +15,7 @@ class CustomDrawer extends StatelessWidget {
         return Drawer(
           backgroundColor: Colors.yellow.shade100,
           elevation: 5,
-          width: MediaQuery.sizeOf(context).width * 0.5,
+          width: context.setWidth(75),
           child: Column(children: [
             Expanded(
               child: ListView.builder(
@@ -35,6 +36,7 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
             Text('Cart Total: \$${cartProvider.getAllPriceCart()}'),
+            SizedBox(height: context.setHeight(1),)
           ]),
         );
       },

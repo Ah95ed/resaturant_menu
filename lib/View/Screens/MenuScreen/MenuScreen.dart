@@ -29,16 +29,16 @@ class MenuScreen extends StatelessWidget {
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                color: Colors.yellow.withOpacity(0.3),
+                color: Colors.yellow,
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: const Offset(1, 3),
+                offset: Offset(1, 3),
               ),
             ],
           ),
-          height: 40,
+          height: context.setHeight(4.5),
           width: context.width / 2,
           child: Consumer<DataApiController>(
             builder: (context, e, child) {
