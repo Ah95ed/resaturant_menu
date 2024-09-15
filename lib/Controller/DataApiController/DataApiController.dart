@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:restaurant_management/Helper/Language/LanguageContrller.dart';
+import 'package:restaurant_management/Helper/Language/Words.dart';
+import 'package:restaurant_management/Helper/Location/LocationClint.dart';
 import 'package:restaurant_management/Helper/Logger/Logger.dart';
 import 'package:restaurant_management/Models/ApiModel/ApiModel.dart';
 import 'package:restaurant_management/Models/CartModels.dart';
@@ -18,11 +22,11 @@ class DataApiController extends ChangeNotifier {
 
   Future<void> getData() async {
     data = await _apiModel.getData();
- 
-    for(var e in data['data']){
-      if(e['sngl'] == 'drink'){
+
+    for (var e in data['data']) {
+      if (e['sngl'] == Words.drink) {
         drinks.add(e);
-      }else{
+      } else {
         foods.add(e);
       }
     }
@@ -30,7 +34,23 @@ class DataApiController extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Cartmodels> carts = [];
+  Future<void> sendOrder() async {
+    if (carts.isEmpty) return;
+
+    Position position = await LocationClient.instanse.getCurrentLocation();
+
+    for (int i = 0; i < carts.length; i++) {
+      Map<String, dynamic> data = {
+        'name': carts[i].name,
+        'price': carts[i].price,
+        'quantity': carts[i].quantity,
+      };
+
+      // await _apiModel.sendOrder(data);
+    }
+  }
+
+  List carts = [];
 
   void addToCart(Cartmodels product) async {
     carts.add(product);
@@ -49,5 +69,4 @@ class DataApiController extends ChangeNotifier {
     }
     return total;
   }
-
 }

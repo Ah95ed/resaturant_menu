@@ -32,9 +32,9 @@ class MenuScreen extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                 color: Colors.yellow,
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(1, 3),
+                // spreadRadius: 5,
+                // blurRadius: 7,
+                // offset: Offset(1, 3),
               ),
             ],
           ),
@@ -109,6 +109,39 @@ class MenuScreen extends StatelessWidget {
             DrinkCard(),
           ],
         ),
+        floatingActionButton: InkWell(
+          onTap: () {
+            c.sendOrder();
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.yellow,
+                  // spreadRadius: 5,
+                  // blurRadius: 7,
+                  // offset: Offset(1, 3),
+                ),
+              ],
+            ),
+            height: context.setHeight(6),
+            width: context.width / 3,
+            child: Center(
+              child: Text(
+                Lang[Words.sendOrder],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: context.setFontSize(10),
+                  fontWeight: FontWeight.bold,
+                  
+                ),
+              ),
+            ),
+          ),
+        ),
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       ),
     );
   }

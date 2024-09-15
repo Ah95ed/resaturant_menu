@@ -15,9 +15,12 @@ class Words {
   static const totalPrice = 'totalprice';
   static const foods = 'Foods';
   static const drinks = 'drinks';
+  static const drink = 'drink';
+  static const sendOrder= 'Send Order';
 
   static Map<String, Map<String, String>> keyMap = {
     'en': {
+      sendOrder : 'Send Order',
       drinks : 'Drinks',
       foods : 'Foods',
       totalPrice: 'Total Price : ',
@@ -36,6 +39,7 @@ class Words {
       login: 'Login',
     },
     'ar': {
+      sendOrder : 'ارسال الطلب',
       drinks : 'المشروبات',
       foods : 'الأطعمة',
       totalPrice: 'السعر الكلي : ',

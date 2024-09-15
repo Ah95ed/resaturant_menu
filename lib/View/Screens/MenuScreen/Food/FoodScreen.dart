@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_management/Controller/DataApiController/DataApiController.dart';
+import 'package:restaurant_management/Helper/Location/LocationClint.dart';
 import 'package:restaurant_management/Helper/Logger/Logger.dart';
 import 'package:restaurant_management/Helper/Service/onRunInit.dart';
 import 'package:restaurant_management/Models/CartModels.dart';
 import 'package:restaurant_management/View/StyleApp/SizeApp/SizeApp.dart';
 
-class FoodCard extends StatelessWidget {
+class FoodCard extends StatefulWidget {
   const FoodCard({super.key});
 
+  @override
+  State<FoodCard> createState() => _FoodCardState();
+}
+
+class _FoodCardState extends State<FoodCard> {
+
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    LocationClient.instanse.requestLocationPermission();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(

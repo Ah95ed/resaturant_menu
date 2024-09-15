@@ -8,9 +8,9 @@ class OnRunInit {
   OnRunInit._();
   static final instance = OnRunInit._();
   Future<void> initApp() async {
-    // SharedPreferences.setMockInitialValues(<String, String>{});
+
     shpr = await SharedPreferences.getInstance();
     await initLang(shpr.getString('lang') ?? 'ar');
-    path = 'assets/food/food.jpg';
+    // path = 'assets/food/food.jpg';
   }
 }

@@ -45,7 +45,7 @@ class DrinkCard extends StatelessWidget {
                     Positioned(
                       bottom: context.setHeight(6),
                       left: context.setWidth(1),
-                      right:  context.setWidth(1),  
+                      right: context.setWidth(1),
                       child: Image.network(
                         'https://moath.pointeam.org/cabtinwhatsapp/img/ricechk.jpeg',
                         width: context.setWidth(45),
