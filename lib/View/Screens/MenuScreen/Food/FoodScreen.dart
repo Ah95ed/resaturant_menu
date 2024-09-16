@@ -52,9 +52,9 @@ class _FoodCardState extends State<FoodCard> {
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.white,
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(1, 3),
+                          // spreadRadius: 5,
+                          // blurRadius: 7,
+                          // offset: Offset(1, 3),
                         ),
                       ],
                     ),
@@ -64,6 +64,8 @@ class _FoodCardState extends State<FoodCard> {
                        
                         Positioned(
                           bottom: context.setHeight(6),
+                          left: context.setWidth(1.5),
+                          right: context.setWidth(1.5),
                           child: Center(
                             child: Image.network(
                               'https://moath.pointeam.org/cabtinwhatsapp/img/ricechk.jpeg',

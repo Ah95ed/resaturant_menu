@@ -34,20 +34,48 @@ class DataApiController extends ChangeNotifier {
     notifyListeners();
   }
 
+  Map<String, List> sendOrders = {};
+  List order = [];
+  // $numbertable=$_POST['nmtable'];
+// $kbabhalf=$_POST['ch'];
+// $count=$_POST['pr'];
+// $allprice=$_POST['allprice'];
+// $tel=$_POST['tel'];
+// $info=$_POST['info'];
+// $deliver=$_POST['deliver'];
+
+// $lat = $_POST["lat"];
+// $longt = $_POST["longg"];
   Future<void> sendOrder() async {
     if (carts.isEmpty) return;
 
-    Position position = await LocationClient.instanse.getCurrentLocation();
+    // Position position = await LocationClient.instanse.getCurrentLocation();
 
     for (int i = 0; i < carts.length; i++) {
-      Map<String, dynamic> data = {
-        'name': carts[i].name,
-        'price': carts[i].price,
-        'quantity': carts[i].quantity,
+      sendOrders = {
+        'ch': [carts[i].name, carts[i].price,],
+        'pr': [ carts[i].quantity],
+        'allprice': [getAllPriceCart()],
+        'tel': ['0000'],
+        'info': ['info'],
+        'deliver': ['deliver'],
+        'lat': ['lat'],
+        'longg': ['long'],
+        'nmtable' : ['nmtable'],
       };
-
-      // await _apiModel.sendOrder(data);
+      order.add({
+        'ch': [carts[i].name, carts[i].price, carts[i].quantity],
+          'pr': [getAllPriceCart().toString()],
+        'allprice': [getAllPriceCart()],
+        'tel': ['0000'],
+        'info': ['info'],
+        'deliver': ['deliver'],
+        'lat': ['lat'],
+        'longg': ['long'],
+        'nmtable' : ['nmtable'],
+      });
     }
+    _apiModel.sendOrder(sendOrders);
   }
 
   List carts = [];
@@ -70,3 +98,20 @@ class DataApiController extends ChangeNotifier {
     return total;
   }
 }
+
+
+
+
+// $numbertable=$_POST['nmtable'];
+// $kbabhalf=$_POST['ch'];
+
+// $count=$_POST['pr'];
+
+// $allprice=$_POST['allprice'];
+
+// $tel=$_POST['tel'];
+// $info=$_POST['info'];
+// $deliver=$_POST['deliver'];
+
+// $lat = $_POST["lat"];
+// $longt = $_POST["longg"];

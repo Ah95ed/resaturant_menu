@@ -33,9 +33,9 @@ class DrinkCard extends StatelessWidget {
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.white,
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(1, 3),
+                      // spreadRadius: 5,
+                      // blurRadius: 7,
+                      // offset: Offset(1, 3),
                     ),
                   ],
                 ),
@@ -44,8 +44,8 @@ class DrinkCard extends StatelessWidget {
                   children: [
                     Positioned(
                       bottom: context.setHeight(6),
-                      left: context.setWidth(1),
-                      right: context.setWidth(1),
+                      left: context.setWidth(1.5),
+                      right: context.setWidth(1.5),
                       child: Image.network(
                         'https://moath.pointeam.org/cabtinwhatsapp/img/ricechk.jpeg',
                         width: context.setWidth(45),

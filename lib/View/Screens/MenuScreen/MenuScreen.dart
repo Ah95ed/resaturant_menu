@@ -119,9 +119,6 @@ class MenuScreen extends StatelessWidget {
               boxShadow: const [
                 BoxShadow(
                   color: Colors.yellow,
-                  // spreadRadius: 5,
-                  // blurRadius: 7,
-                  // offset: Offset(1, 3),
                 ),
               ],
             ),
