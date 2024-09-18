@@ -1,4 +1,5 @@
 class Words {
+  static const interNumber = 'Inter Number';
   static const String register = 'Register';
   static const String forgetPassword = 'Forget Password';
   static const String forgotPassword = 'Forgot Password';
@@ -16,13 +17,29 @@ class Words {
   static const foods = 'Foods';
   static const drinks = 'drinks';
   static const drink = 'drink';
-  static const sendOrder= 'Send Order';
+  static const sendOrder = 'Send Order';
+  static const sendOrderSuccess = 'Send Order Success';
+  static const sendOrderFailed = 'sendOrderFailed';
+  static const send = 'Send';
+  static const selectFirst = 'selectFirst';
+  static const cancel = 'cancel';
+  static const wrongNumber = 'wrongNumber';
+  static const startLocation = 'startLocation';
+
 
   static Map<String, Map<String, String>> keyMap = {
     'en': {
-      sendOrder : 'Send Order',
-      drinks : 'Drinks',
-      foods : 'Foods',
+      startLocation: 'Turn on location service',
+      wrongNumber: 'Wrong Number',
+      cancel: 'Cancel',
+      selectFirst: 'Select First',
+      send: 'Send',
+      interNumber: 'Inter Number',
+      sendOrderFailed: 'Send Order Failed',
+      sendOrderSuccess: 'Send Order Success',
+      sendOrder: 'Send Order',
+      drinks: 'Drinks',
+      foods: 'Foods',
       totalPrice: 'Total Price : ',
       register: 'Register',
       forgetPassword: 'Forget Password',
@@ -39,9 +56,17 @@ class Words {
       login: 'Login',
     },
     'ar': {
-      sendOrder : 'ارسال الطلب',
-      drinks : 'المشروبات',
-      foods : 'الأطعمة',
+      startLocation: 'فعل خدمة الموقع',
+      wrongNumber : 'رقم خاطئ',
+      cancel: 'الغاء',
+      selectFirst: 'اختر الأول',
+      send: 'ارسال',
+      interNumber: 'ادخل رقمك',
+      sendOrderFailed: 'فشل في الارسال',
+      sendOrderSuccess: 'تم ارسال الطلب بنجاح',
+      sendOrder: 'ارسال الطلب',
+      drinks: 'المشروبات',
+      foods: 'الأطعمة',
       totalPrice: 'السعر الكلي : ',
       register: 'تسجيل',
       forgetPassword: 'نسيت كلمة المرور',

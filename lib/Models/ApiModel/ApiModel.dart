@@ -17,7 +17,7 @@ class ApiModel {
       );
 
       if (response.statusCode == 200) {
-        Logger.l('message success ${utf8.decode(response.bodyBytes)}');
+        // Logger.l('message success ${utf8.decode(response.bodyBytes)}');
         return await json.decode(
           utf8.decode(response.bodyBytes),
         );
@@ -29,26 +29,21 @@ class ApiModel {
     return {};
   }
 
-  Future<void> sendOrder(Map<String,List> data) async {
-    
+  Future<bool> sendOrder(Map data) async {
     http.Response response;
     Logger.l('message data ${jsonEncode(data)}');
 
-    try {
-      response = await http.post(
-        Uri.parse(
-          Allapis.sendOrder,
-        ),
-        body: jsonEncode(data),
-         headers: {
-        'Content-Type': 'application/x-www-form-urlencoded', // نوع البيانات استمارة
-      },
-      );
-      if (response.statusCode == 200) {
-        Logger.l('Data sent successfully: ${response.body}');
-      }
-    } catch (e) {
-      Logger.l('Data Error sent: $e');
+    response = await http.post(
+      Uri.parse(
+        Allapis.sendOrder,
+      ),
+      body: jsonEncode(data),
+    );
+    if (response.statusCode == 200) {
+      // Logger.l('Data sent successfully:  ${response.body}');
+      return true;
     }
+    Logger.l('Data Error sent: ${response.statusCode}');
+    return false;
   }
 }

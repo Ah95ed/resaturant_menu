@@ -109,7 +109,7 @@ class DrinkCard extends StatelessWidget {
                           data.addToCart(
                             Cartmodels(
                               name: data.drinks[index]['txt'],
-                              price: double.parse(data.drinks[index]['id']),
+                              price: data.drinks[index]['id'],
                               quantity: 1,
                             ),
                           );

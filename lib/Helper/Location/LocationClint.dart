@@ -38,8 +38,6 @@ class LocationClient {
     }
 
     // الحصول على الموقع الحالي
-    return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
+    return await Geolocator.getCurrentPosition();
   }
 }

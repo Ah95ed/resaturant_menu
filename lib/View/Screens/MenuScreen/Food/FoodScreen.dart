@@ -15,14 +15,13 @@ class FoodCard extends StatefulWidget {
 }
 
 class _FoodCardState extends State<FoodCard> {
-
-
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     LocationClient.instanse.requestLocationPermission();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,32 +46,25 @@ class _FoodCardState extends State<FoodCard> {
                   child: Container(
                     height: context.setHeight(20),
                     decoration: BoxDecoration(
-
                       borderRadius: BorderRadius.circular(context.setRadius(4)),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.white,
-                          // spreadRadius: 5,
-                          // blurRadius: 7,
-                          // offset: Offset(1, 3),
                         ),
                       ],
                     ),
                     child: Stack(
                       clipBehavior: Clip.none,
                       children: [
-                       
                         Positioned(
                           bottom: context.setHeight(6),
                           left: context.setWidth(1.5),
                           right: context.setWidth(1.5),
-                          child: Center(
-                            child: Image.network(
-                              'https://moath.pointeam.org/cabtinwhatsapp/img/ricechk.jpeg',
-                              width: context.setWidth(45),
-                              height: context.setHeight(20),
-                              fit: BoxFit.fill,
-                            ),
+                          child: Image.network(
+                            'https://moath.pointeam.org/cabtinwhatsapp/img/ricechk.jpeg',
+                            width: context.setWidth(45),
+                            height: context.setHeight(20),
+                            fit: BoxFit.fill,
                           ),
                         ),
                         Positioned(
@@ -131,7 +123,9 @@ class _FoodCardState extends State<FoodCard> {
                               data.addToCart(
                                 Cartmodels(
                                   name: data.foods[index]['txt'],
-                                  price: double.parse(data.foods[index]['id']),
+                                  price: double.parse(
+                                    data.foods[index]['id'],
+                                  ),
                                   quantity: 1,
                                 ),
                               );

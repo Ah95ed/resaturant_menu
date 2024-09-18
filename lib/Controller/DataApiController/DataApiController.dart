@@ -34,54 +34,63 @@ class DataApiController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Map<String, List> sendOrders = {};
+  Map<String, dynamic> sendOrders = {};
   List order = [];
-  // $numbertable=$_POST['nmtable'];
-// $kbabhalf=$_POST['ch'];
-// $count=$_POST['pr'];
-// $allprice=$_POST['allprice'];
-// $tel=$_POST['tel'];
-// $info=$_POST['info'];
-// $deliver=$_POST['deliver'];
-
-// $lat = $_POST["lat"];
-// $longt = $_POST["longg"];
-  Future<void> sendOrder() async {
+  bool isSend = false;
+  List pr = [];
+  Future<void> sendOrder(String number, double lang, double lat) async {
     if (carts.isEmpty) return;
 
     // Position position = await LocationClient.instanse.getCurrentLocation();
 
     for (int i = 0; i < carts.length; i++) {
-      sendOrders = {
-        'ch': [carts[i].name, carts[i].price,],
-        'pr': [ carts[i].quantity],
-        'allprice': [getAllPriceCart()],
-        'tel': ['0000'],
-        'info': ['info'],
-        'deliver': ['deliver'],
-        'lat': ['lat'],
-        'longg': ['long'],
-        'nmtable' : ['nmtable'],
-      };
-      order.add({
-        'ch': [carts[i].name, carts[i].price, carts[i].quantity],
-          'pr': [getAllPriceCart().toString()],
-        'allprice': [getAllPriceCart()],
-        'tel': ['0000'],
-        'info': ['info'],
-        'deliver': ['deliver'],
-        'lat': ['lat'],
-        'longg': ['long'],
-        'nmtable' : ['nmtable'],
-      });
+      order.add('${carts[i].name}-${carts[i].price}');
+      pr.add(carts[i].quantity);
     }
-    _apiModel.sendOrder(sendOrders);
+
+    sendOrders = {
+      'ch': order,
+      'pr': pr,
+      'allprice': getAllPriceCart(),
+      'tel': number,
+      'info': 'info',
+      'deliver': 'deliver',
+      'lat': '$lat',
+      'longg': '$lang',
+      'nmtable': 'nmtable',
+    };
+
+    // Logger.l('message data ${(sendOrders)}');
+    isSend = await _apiModel.sendOrder(sendOrders);
+    if (isSend) {
+      carts.clear();
+      pr.clear();
+      order.clear();
+      data.clear();
+      isSend = false;
+      notifyListeners();
+      return;
+    }
+    notifyListeners();
   }
 
-  List carts = [];
+  List<Cartmodels> carts = [];
 
   void addToCart(Cartmodels product) async {
-    carts.add(product);
+    // تحقق مما إذا كان المنتج موجودًا بالفعل في السلة
+    int index = carts.indexWhere(
+      (item) => item.name == product.name,
+    );
+
+    if (index != -1) {
+      // إذا كان المنتج موجودًا، قم بزيادة العدد وتحديث السعر الإجمالي
+      carts[index].quantity += product.quantity;
+      carts[index].price += product.price;
+      // Logger.l('message calc ${carts[index].price}');
+    } else {
+      // إذا لم يكن المنتج موجودًا، أضفه للسلة
+      carts.add(product);
+    }
     notifyListeners();
   }
 
@@ -90,10 +99,29 @@ class DataApiController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeCountFromCart(Cartmodels product) {
+    // تحقق مما إذا كان المنتج موجودًا في السلة
+    int index = carts.indexWhere(
+      (item) => item.name == product.name,
+    );
+
+    if (index != -1) {
+      // إذا كان المنتج موجودًا، قم بإنقاص العدد وتحديث السعر
+      carts[index].quantity -= product.quantity;
+      carts[index].price -= product.price;
+
+      // إذا وصل العدد إلى الصفر أو أقل، احذف المنتج من السلة
+      if (carts[index].quantity <= 0) {
+        carts.removeAt(index);
+      }
+    }
+    notifyListeners();
+  }
+
   double getAllPriceCart() {
     double total = 0.0;
     for (int i = 0; i < carts.length; i++) {
-      total += carts[i].price * carts[i].quantity;
+      total += carts[i].price; //* carts[i].quantity;
     }
     return total;
   }
