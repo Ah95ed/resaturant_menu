@@ -5,12 +5,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_management/Controller/DataApiController/DataApiController.dart';
 import 'package:restaurant_management/Helper/Language/LanguageContrller.dart';
+import 'package:restaurant_management/Helper/Language/Words.dart';
 import 'package:restaurant_management/Helper/Location/LocationClint.dart';
 import 'package:restaurant_management/Helper/Logger/Logger.dart';
 import 'package:restaurant_management/Helper/Service/onRunInit.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/MenuScreen.dart';
 
-void main() async {
+Future<void> main() async {
   await runZonedGuarded<Future<void>>(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
           ],
           debugShowCheckedModeBanner: false,
           locale: value.currentLocale,
+          title:Lang[Words.appName],
           // initialRoute: initRoute,
           // routes: routes,
           home: MenuScreen(),

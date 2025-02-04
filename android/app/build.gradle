@@ -5,9 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.resuarant_management.point"
+    namespace = "com.res_manag.point"
+    // namespace = "com.resuarant_management.point"
     compileSdk = 34
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
+        
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.4 <4.0.0'
+  sdk: '^3.6.0'
 dependencies:
   flutter:
     sdk: flutter
@@ -12,14 +12,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
+  cupertino_icons: 
 
   http: 
-  # dio:
-
-  provider: ^6.0.5
-  shared_preferences: ^2.3.2
-  geolocator: ^13.0.1
+  provider:
+  shared_preferences: 
+  geolocator: 
   
 
 
@@ -27,7 +25,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: 
 flutter:
   assets:
     - assets/food/
@@ -36,9 +34,7 @@ flutter:
     
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   # assets:
-   
   #   - images/a_dot_ham.jpeg
 
   # fonts:

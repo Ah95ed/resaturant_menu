@@ -1,4 +1,5 @@
 class Words {
+  static const String appName = 'Restaurant Management';
   static const interNumber = 'Inter Number';
   static const String register = 'Register';
   static const String forgetPassword = 'Forget Password';
@@ -29,6 +30,7 @@ class Words {
 
   static Map<String, Map<String, String>> keyMap = {
     'en': {
+      appName : appName,
       startLocation: 'Turn on location service',
       wrongNumber: 'Wrong Number',
       cancel: 'Cancel',
@@ -56,6 +58,7 @@ class Words {
       login: 'Login',
     },
     'ar': {
+      appName: "نظام ادارة المطعم",
       startLocation: 'فعل خدمة الموقع',
       wrongNumber : 'رقم خاطئ',
       cancel: 'الغاء',
