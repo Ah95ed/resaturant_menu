@@ -11,6 +11,5 @@ class OnRunInit {
 
     shpr = await SharedPreferences.getInstance();
     await initLang(shpr.getString('lang') ?? 'ar');
-    // path = 'assets/food/food.jpg';
   }
 }

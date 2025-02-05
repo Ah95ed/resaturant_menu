@@ -80,7 +80,8 @@ class MenuScreen extends StatelessWidget {
                     '${value.carts.length}',
                     style: TextStyle(
                       fontSize: context.setFontSize(8),
-                      color: value.carts.isEmpty ? Colors.black : Colors.red,
+                      color: value.carts.isEmpty ?
+                       Colors.black : Colors.red,
                     ),
                   ),
                 ),

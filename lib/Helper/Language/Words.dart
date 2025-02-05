@@ -26,6 +26,7 @@ class Words {
   static const cancel = 'cancel';
   static const wrongNumber = 'wrongNumber';
   static const startLocation = 'startLocation';
+  // what is this?
 
 
   static Map<String, Map<String, String>> keyMap = {
