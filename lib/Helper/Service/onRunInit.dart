@@ -2,7 +2,6 @@ import 'package:restaurant_management/Helper/Language/LanguageContrller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late SharedPreferences shpr;
-late String path;
 
 class OnRunInit {
   OnRunInit._();
