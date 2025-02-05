@@ -40,9 +40,6 @@ class DataApiController extends ChangeNotifier {
   List pr = [];
   Future<void> sendOrder(String number, double lang, double lat) async {
     if (carts.isEmpty) return;
-
-    // Position position = await LocationClient.instanse.getCurrentLocation();
-
     for (int i = 0; i < carts.length; i++) {
       order.add('${carts[i].name}-${carts[i].price}');
       pr.add(carts[i].quantity);
@@ -60,7 +57,6 @@ class DataApiController extends ChangeNotifier {
       'nmtable': 'nmtable',
     };
 
-    // Logger.l('message data ${(sendOrders)}');
     isSend = await _apiModel.sendOrder(sendOrders);
     if (isSend) {
       carts.clear();
@@ -86,7 +82,6 @@ class DataApiController extends ChangeNotifier {
       // إذا كان المنتج موجودًا، قم بزيادة العدد وتحديث السعر الإجمالي
       carts[index].quantity += product.quantity;
       carts[index].price += product.price;
-      // Logger.l('message calc ${carts[index].price}');
     } else {
       // إذا لم يكن المنتج موجودًا، أضفه للسلة
       carts.add(product);
@@ -126,20 +121,3 @@ class DataApiController extends ChangeNotifier {
     return total;
   }
 }
-
-
-
-
-// $numbertable=$_POST['nmtable'];
-// $kbabhalf=$_POST['ch'];
-
-// $count=$_POST['pr'];
-
-// $allprice=$_POST['allprice'];
-
-// $tel=$_POST['tel'];
-// $info=$_POST['info'];
-// $deliver=$_POST['deliver'];
-
-// $lat = $_POST["lat"];
-// $longt = $_POST["longg"];

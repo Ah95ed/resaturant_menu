@@ -8,7 +8,6 @@ class OnRunInit {
   OnRunInit._();
   static final instance = OnRunInit._();
   Future<void> initApp() async {
-
     shpr = await SharedPreferences.getInstance();
     await initLang(shpr.getString('lang') ?? 'ar');
   }
