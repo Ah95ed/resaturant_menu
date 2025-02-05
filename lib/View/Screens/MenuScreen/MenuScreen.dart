@@ -4,15 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_management/Controller/DataApiController/DataApiController.dart';
 import 'package:restaurant_management/Helper/Language/LanguageContrller.dart';
 import 'package:restaurant_management/Helper/Language/Words.dart';
-import 'package:restaurant_management/Helper/Location/LocationClint.dart';
-import 'package:restaurant_management/Helper/Logger/Logger.dart';
-import 'package:restaurant_management/Models/ApiModel/ApiModel.dart';
 import 'package:restaurant_management/View/Widgets/Dialog/CustomDialog.dart';
 import 'package:restaurant_management/View/Widgets/Drawer/CustomDrawer.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/Drinks/DrinksScreen.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/Food/FoodScreen.dart';
 import 'package:restaurant_management/View/StyleApp/SizeApp/SizeApp.dart';
-import 'package:restaurant_management/View/Widgets/ScaffoldMessenger/ScaffoldMesseng.dart';
 
 class MenuScreen extends StatelessWidget {
   MenuScreen({super.key});
@@ -65,17 +61,20 @@ class MenuScreen extends StatelessWidget {
             builder: (context, value, child) => Stack(
               children: [
                 Positioned(
+                    left: context.isMobile ? null : context.setWidth(-1),
                     top: context.setHeight(0.5),
                     child: IconButton(
                       onPressed: () => Scaffoldkey.currentState!.openDrawer(),
                       icon: Image.asset(
                         'assets/icon/shop.png',
-                        width: context.setIconSize(8),
+                        width: context.setFontSize(12),
                         color: value.carts.isEmpty ? Colors.black : Colors.red,
                       ),
                     )),
                 Positioned(
-                  right: context.setWidth(4.4),
+                  left: context.isMobile
+                      ? context.setWidth(7)
+                      : context.setWidth(1),
                   top: context.setHeight(-0.3),
                   child: Text(
                     '${value.carts.length}',
@@ -91,12 +90,34 @@ class MenuScreen extends StatelessWidget {
           title: TabBar(
             tabs: [
               Tab(
-                icon: const Icon(Icons.fastfood),
-                text: Lang[Words.foods],
+                icon: const Icon(
+                  Icons.fastfood,
+                  color: Colors.black,
+                ),
+                child: Text(
+                  Lang[Words.foods],
+                  style: TextStyle(
+                    fontSize: context.setFontSize(8),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    letterSpacing: 1,
+                  ),
+                ),
               ),
               Tab(
-                icon: const Icon(Icons.local_drink),
-                text: Lang[Words.drinks],
+                icon: const Icon(
+                  Icons.local_drink,
+                  color: Colors.black,
+                ),
+                child: Text(
+                  Lang[Words.foods],
+                  style: TextStyle(
+                    fontSize: context.setFontSize(8),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    letterSpacing: 1,
+                  ),
+                ),
               ),
             ],
           ),
@@ -120,7 +141,7 @@ class MenuScreen extends StatelessWidget {
           ],
         ),
         floatingActionButton: InkWell(
-          onTap: ()  {
+          onTap: () {
             if (c.carts.isEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -137,7 +158,6 @@ class MenuScreen extends StatelessWidget {
                 builder: (_) {
                   return const Customdialog();
                 });
-           
           },
           child: Container(
             decoration: BoxDecoration(
@@ -167,5 +187,4 @@ class MenuScreen extends StatelessWidget {
       ),
     );
   }
-
 }

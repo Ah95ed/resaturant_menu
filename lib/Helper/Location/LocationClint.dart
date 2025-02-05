@@ -16,8 +16,7 @@ class LocationClient {
 // الحصول على الموقع الحالي
   Future<Position> getCurrentLocation() async {
     // التحقق مما إذا كانت خدمة الموقع مفعلة
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled!) {
+    if (await Geolocator.isLocationServiceEnabled()) {
       // إذا كانت غير مفعلة، اطلب من المستخدم تفعيلها
       Logger.l('message ${LocationPermission.denied}');
       return Future.error('خدمة الموقع غير مفعلة.');

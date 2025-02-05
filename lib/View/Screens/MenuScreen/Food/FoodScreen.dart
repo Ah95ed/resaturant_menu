@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_management/Controller/DataApiController/DataApiController.dart';
 import 'package:restaurant_management/Helper/Location/LocationClint.dart';
-import 'package:restaurant_management/Helper/Logger/Logger.dart';
-import 'package:restaurant_management/Helper/Service/onRunInit.dart';
 import 'package:restaurant_management/Models/CartModels.dart';
 import 'package:restaurant_management/View/StyleApp/SizeApp/SizeApp.dart';
 
@@ -17,7 +15,6 @@ class FoodCard extends StatefulWidget {
 class _FoodCardState extends State<FoodCard> {
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     LocationClient.instanse.requestLocationPermission();
   }
@@ -32,9 +29,9 @@ class _FoodCardState extends State<FoodCard> {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: context.isMobile ? 2 : 4,
-                mainAxisSpacing: context.setHeight(2),
-                crossAxisSpacing: context.setWidth(2),
-                childAspectRatio: 3 / 4,
+                // mainAxisSpacing: context.setHeight),
+                crossAxisSpacing: context.setWidth(1),
+                childAspectRatio: .9,
               ),
               itemCount: data.foods.length,
               itemBuilder: (context, index) {
