@@ -17,8 +17,6 @@ Future<void> main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       await OnRunInit.instance.initApp();
-       
-        
       runApp(
         MultiProvider(
           providers: [
@@ -52,7 +50,6 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           debugShowCheckedModeBanner: false,
-
           locale: value.currentLocale,
           title:Lang[Words.appName],
           initialRoute: initRoute,

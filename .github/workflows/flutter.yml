@@ -43,7 +43,7 @@ jobs:
           GH_TOKEN: ${{ secrets.TOKEN_ALL }}
   
         run: |
-          git clone https://$GH_TOKEN@github.com/Ah95ed/myapp-releases.git release-repo
+          git clone https://$GH_TOKEN@github.com/Ah95ed/resaturant_menu.git release-repo
   
       - name: Copy APKs to Release Repo
         run: |
