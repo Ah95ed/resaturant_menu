@@ -111,7 +111,7 @@ class MenuScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
                 child: Text(
-                  Lang[Words.foods],
+                  Lang[Words.drinks],
                   style: TextStyle(
                     fontSize: context.setFontSize(8),
                     fontWeight: FontWeight.bold,

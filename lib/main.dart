@@ -10,6 +10,7 @@ import 'package:restaurant_management/Helper/Location/LocationClint.dart';
 import 'package:restaurant_management/Helper/Logger/Logger.dart';
 import 'package:restaurant_management/Helper/Service/onRunInit.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/MenuScreen.dart';
+import 'package:restaurant_management/View/route/route.dart';
 
 Future<void> main() async {
   await runZonedGuarded<Future<void>>(
@@ -32,7 +33,7 @@ Future<void> main() async {
       );
     },
     (error, stackTrace) {
-      Logger.l('runZonedGuarded $error + $stackTrace');
+      Logger.l('runZonedGuarded ==== $error + $stackTrace');
     },
   );
 }
@@ -51,11 +52,11 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           debugShowCheckedModeBanner: false,
+
           locale: value.currentLocale,
           title:Lang[Words.appName],
-          // initialRoute: initRoute,
-          // routes: routes,
-          home: MenuScreen(),
+          initialRoute: initRoute,
+          routes: routes,
         );
       },
     );

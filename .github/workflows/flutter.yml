@@ -31,14 +31,27 @@ jobs:
         run: flutter build apk --split-per-abi
       - name: Create APKs directory (if not exists)
         run: mkdir -p apks
+
       
-      - name: Copy APKs to directory
-        run: cp build/app/outputs/apk/release/*.apk apks/
 
       - name: Configure Git
         run: |
           git config --global user.name "Ah95ed"
           git config --global user.email "Amhmeed31@gmail.com"
+      - name: Clone Release Repository
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN_ALL }}
+  
+        run: |
+          git clone https://$GH_TOKEN@github.com/Ah95ed/myapp-releases.git release-repo
+  
+      - name: Copy APKs to Release Repo
+        run: |
+            mkdir -p release-repo/apks/${{ github.sha }}
+            cp build/app/outputs/apk/release/*.apk release-repo/apks/${{ github.sha }}/
+    
+      - name: Copy APKs to directory
+        run: cp build/app/outputs/apk/release/*.apk apks/
 
       - name: Commit and Push APKs
         run: |
