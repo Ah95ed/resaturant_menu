@@ -22,7 +22,6 @@ class DataApiController extends ChangeNotifier {
 
   Future<void> getData() async {
     data = await _apiModel.getData();
-
     for (var e in data['data']) {
       if (e['sngl'] == Words.drink) {
         drinks.add(e);
@@ -30,7 +29,6 @@ class DataApiController extends ChangeNotifier {
         foods.add(e);
       }
     }
-
     notifyListeners();
   }
 

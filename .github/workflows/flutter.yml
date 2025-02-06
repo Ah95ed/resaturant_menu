@@ -27,16 +27,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Clean Old Files # <──── الخطوة الجديدة
-        run: |
-          cd release-repo
-          rm -rf outputApks/*
-
       - name: clean Project
         run: flutter clean
 
       - name: Build APKs
-        run: flutter build apk --split-per-abi
+        run: flutter build apk
 
       - name: Create APKs directory (if not exists)
         run: mkdir -p outputApks
