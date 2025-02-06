@@ -39,10 +39,16 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<LanguageController>(
-      builder: (context, value, child) {
+      builder: (
+        context,
+        value,
+        child,
+      ) {
         return MaterialApp(
           supportedLocales: value.supportLanguage,
           localizationsDelegates: const [
@@ -52,7 +58,7 @@ class MyApp extends StatelessWidget {
           ],
           debugShowCheckedModeBanner: false,
           locale: value.currentLocale,
-          title:Lang[Words.appName],
+          title: Lang[Words.appName],
           initialRoute: initRoute,
           routes: routes,
         );

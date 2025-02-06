@@ -22,13 +22,22 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.27.1'
+          flutter-version: '3.27.4'
 
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Clean Old Files # <──── الخطوة الجديدة
+        run: |
+          cd release-repo
+          rm -rf outputApks/*
+
+      - name: clean Project
+        run: flutter clean
+
       - name: Build APKs
         run: flutter build apk --split-per-abi
+
       - name: Create APKs directory (if not exists)
         run: mkdir -p outputApks
 
@@ -41,7 +50,7 @@ jobs:
       - name: Clone Release Repository
         env:
           GH_TOKEN: ${{ secrets.TOKEN_ALL }}
-  
+
         run: |
           git clone https://$GH_TOKEN@github.com/Ah95ed/resaturant_menu.git release-repo
   
