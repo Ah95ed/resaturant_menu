@@ -7,6 +7,7 @@ import 'package:restaurant_management/Controller/DataApiController/DataApiContro
 import 'package:restaurant_management/Helper/Language/LanguageContrller.dart';
 import 'package:restaurant_management/Helper/Language/Words.dart';
 import 'package:restaurant_management/Helper/Location/LocationClint.dart';
+import 'package:restaurant_management/Helper/Logger/LogApp.dart';
 import 'package:restaurant_management/Helper/Logger/Logger.dart';
 import 'package:restaurant_management/Helper/Service/onRunInit.dart';
 import 'package:restaurant_management/View/Screens/MenuScreen/MenuScreen.dart';
@@ -31,7 +32,7 @@ Future<void> main() async {
       );
     },
     (error, stackTrace) {
-      Logger.l('runZonedGuarded ==== $error + $stackTrace');
+      logError(" Error Main: $error == \n == $stackTrace ");
     },
   );
 }

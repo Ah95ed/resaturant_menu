@@ -77,7 +77,6 @@ class DataApiController extends ChangeNotifier {
     int index = carts.indexWhere(
       (item) => item.name == product.name,
     );
-
     if (index != -1) {
       // إذا كان المنتج موجودًا، قم بزيادة العدد وتحديث السعر الإجمالي
       carts[index].quantity += product.quantity;
