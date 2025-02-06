@@ -10,7 +10,6 @@ import 'package:restaurant_management/Helper/Logger/Logger.dart';
 class Customdialog extends StatefulWidget {
   const Customdialog({super.key});
 
-  // final Position position;
 
   @override
   State<Customdialog> createState() => _CustomdialogState();
@@ -46,7 +45,7 @@ class _CustomdialogState extends State<Customdialog> {
 
     longtude = position!.longitude;
     latitude = position!.latitude;
-    Logger.l('message $latitude == $longtude ');
+    
   }
 
   @override
