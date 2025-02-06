@@ -31,7 +31,10 @@ Future<void> main() async {
         ),
       );
     },
-    (error, stackTrace) {
+    (
+      error,
+      stackTrace,
+    ) {
       logError(" Error Main: $error == \n == $stackTrace ");
     },
   );
@@ -40,7 +43,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return Consumer<LanguageController>(
